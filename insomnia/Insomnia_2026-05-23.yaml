@@ -1,0 +1,295 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: ESG
+meta:
+  id: wrk_4f141dc29be14e2691c4f8aa2692bd71
+  created: 1779017784522
+  modified: 1779024622602
+  description: ""
+collection:
+  - name: login
+    meta:
+      id: fld_5ee241997bfb4132981174bfba074128
+      created: 1779045834987
+      modified: 1779045834987
+      sortKey: -1779045834988
+      description: ""
+    children:
+      - url: http://localhost:8080/auth/register
+        name: cadastrar usuario
+        meta:
+          id: req_b098bc38ef0d426f9196d7635f310ad9
+          created: 1779043347205
+          modified: 1779051746164
+          isPrivate: false
+          description: ""
+          sortKey: -1779045842123
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Matheus",
+            	"email": "matheus@fiap.com",
+            	"senha": "123456",
+            	"role": "USER"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/auth/login
+        name: login
+        meta:
+          id: req_268dc2954527480bbee1f490c909987a
+          created: 1779043720109
+          modified: 1779062420634
+          isPrivate: false
+          description: ""
+          sortKey: -1779045842223
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "uilian@fiap.com",
+            	"senha": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: reducao-carbono
+    meta:
+      id: fld_8b7798621d5542f8a1e9baf0357f6d20
+      created: 1779500134973
+      modified: 1779500134973
+      sortKey: -1779500134973
+      description: ""
+    children:
+      - url: http://localhost:8080/api/reducao-carbono
+        name: salvar
+        meta:
+          id: req_e999ff56ab28471db486d62063257bbb
+          created: 1779500149469
+          modified: 1779584469199
+          isPrivate: false
+          description: ""
+          sortKey: -1779500153270
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricao": "Renovação da Frota Elétrica",
+            	"categoria": "Transporte Sustentável",
+            	"status": "PLANEJADA",
+            	"emissaoBaseTco2E": 5200.00,
+            	"metaReducaoTco2E": 1500.00
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJtYXRoZXVzQGZpYXAuY29tIiwiZXhwIjoxNzc5MDU5NTI4fQ.GTKFKyqwjKGQ6PjvM2KbOXIJRh8su0BU3HjAVu_DIBs
+            description: ""
+            disabled: true
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3Nzk1OTEyOTF9.dfpvkbjKD7Cks-5yJfGwK6PMpuQ5ddhijCm_IYpTQ8U
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/reducao-carbono
+        name: listar
+        meta:
+          id: req_326f3148e43043918ef247553cb9ed1f
+          created: 1779501908730
+          modified: 1779584393378
+          isPrivate: false
+          description: ""
+          sortKey: -1779500153370
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJtYXRoZXVzQGZpYXAuY29tIiwiZXhwIjoxNzc5MDU4OTU4fQ.AqFrm5-V47SaVgzkRE5W6SLhdgdmWogf4Ixpnp0k4jA
+            description: ""
+            disabled: true
+        authentication:
+          type: bearer
+          disabled: false
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3Nzk1OTE1NjB9.ksob4n-7odowT_8PGRps_ekVHHIh1V8aXYsYrdziip0
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/reducao-carbono/1
+        name: buscar por id
+        meta:
+          id: req_5fd70efdb151498c8c9608bd98c43d9f
+          created: 1779501917652
+          modified: 1779501984368
+          isPrivate: false
+          description: ""
+          sortKey: -1779500153470
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJtYXRoZXVzQGZpYXAuY29tIiwiZXhwIjoxNzc5MDYxMjk4fQ.xgA8AQeaeXJu38DOdKvUoHJZAaOzsQSqKVvvTJAraMo
+            description: ""
+            disabled: true
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3Nzk1MDc2Mjd9.2XSr_VFwwAQFKtKc7HYO9WzFLo8Dje8cTyyOrRqYnz0
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/reducao-carbono
+        name: editar
+        meta:
+          id: req_aad32afac6054f23b1e6a1f44281093f
+          created: 1779501999701
+          modified: 1779502751945
+          isPrivate: false
+          description: ""
+          sortKey: -1779500153320
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"reducaoCarbonoId": 2,
+            	"descricao": "Renovação da Frota Elétrica atualizado",
+            	"categoria": "Transporte Sustentável",
+            	"status": "PLANEJADA",
+            	"emissaoBaseTco2E": 5200.00,
+            	"metaReducaoTco2E": 1500.00
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3NzkxMjU4Njd9.DA9WVqdenRkJAjR1-g0lr6eTieVx9i-uqySGvdqiHrM
+            description: ""
+            disabled: true
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3Nzk1MDc2Mjd9.2XSr_VFwwAQFKtKc7HYO9WzFLo8Dje8cTyyOrRqYnz0
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/reducao-carbono/3
+        name: excluir
+        meta:
+          id: req_6900ad0f2cf943af8f167a176fcc3403
+          created: 1779502802662
+          modified: 1779502988525
+          isPrivate: false
+          description: ""
+          sortKey: -1779500153420
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.1
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3NzkwNTY5NzB9.YibdAEF3uvEQE4n22Pdaf9e99APf1VR7UVxcMxIWz_c
+            description: ""
+            disabled: true
+        authentication:
+          type: bearer
+          disabled: false
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJlc2ciLCJzdWIiOiJ1aWxpYW5AZmlhcC5jb20iLCJleHAiOjE3Nzk1MDc2Mjd9.2XSr_VFwwAQFKtKc7HYO9WzFLo8Dje8cTyyOrRqYnz0
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_3b53d172d1e0807827ba56e168aef770e31f3e07
+    created: 1779017784528
+    modified: 1779021045374
+  cookies:
+    - id: 55580331-0bcd-412a-9c50-119f31552627
+      key: JSESSIONID
+      value: A1C581FD26E691B06EF7D3A4F0DDC0FD
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_3b53d172d1e0807827ba56e168aef770e31f3e07
+    created: 1779017784525
+    modified: 1779017784525
+    isPrivate: false
