@@ -1,0 +1,51 @@
+services:
+
+  # ==========================================================
+  # BANCO DE DADOS - Oracle Database Free
+  # ==========================================================
+  db:
+    image: gvenzl/oracle-free:23-slim-faststart
+    container_name: esg-db
+    environment:
+      ORACLE_PASSWORD: ${DB_ADMIN_PASSWORD}     # senha do administrador
+      APP_USER: ${DATABASE_USER}                # cria o usuario da aplicacao
+      APP_USER_PASSWORD: ${DATABASE_PWD}        # senha do usuario da aplicacao
+    volumes:
+      - esg-db-data:/opt/oracle/oradata         # dados persistem fora do container
+    networks:
+      - esg-network
+    healthcheck:                                # so fica "saudavel" quando aceita conexoes
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  # ==========================================================
+  # API - Aplicacao Spring Boot (construida pelo Dockerfile)
+  # ==========================================================
+  api:
+    build: .                                    # usa o Dockerfile desta pasta
+    image: esg-api
+    container_name: esg-api
+    ports:
+      - "${APP_PORT:-8080}:8080"                # porta do computador : porta do container
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PWD: ${DATABASE_PWD}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy              # espera o banco ficar pronto
+    networks:
+      - esg-network
+
+# Rede interna que liga a API ao banco
+networks:
+  esg-network:
+    driver: bridge
+
+# Volume nomeado onde o Oracle guarda os dados
+volumes:
+  esg-db-data:
