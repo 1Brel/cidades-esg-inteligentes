@@ -316,3 +316,13 @@ No Pull Request, apenas o job de build e testes é executado, validando o códig
 - Insomnia
 
 ---
+
+## Checklist de entrega
+
+- [x] Projeto compactado em .ZIP com estrutura organizada
+- [x] Dockerfile funcional
+- [x] docker-compose.yml ou arquivos Kubernetes
+- [x] Pipeline com etapas de build, teste e deploy
+- [x] README.md com instruções e prints
+- [x] Documentação técnica com evidências (PDF ou PPT)
+- [x] Deploy realizado nos ambientes staging e produção
