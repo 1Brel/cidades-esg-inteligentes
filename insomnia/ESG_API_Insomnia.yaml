@@ -1,0 +1,257 @@
+type: collection.insomnia.rest/5.0
+schema_version: '5.1'
+name: Cidades ESGInteligentes - API
+meta:
+  id: wrk_esg0a1b2c3d4e5f60718293a4b5c6d7e8
+  created: 1791250000000
+  modified: 1791250000000
+  description: 1) Escolha o ambiente. 2) Rode 1 - Cadastrar usuario e 2 - Login. 3) Copie o token da resposta do Login e cole em Auth > Bearer Token de cada requisicao (3 a 7).
+collection:
+- name: 1 - Autenticacao
+  meta:
+    id: fld_esgauth0000000000000000000000001
+    created: 1791250000000
+    modified: 1791250000000
+    sortKey: -2
+    description: ''
+  children:
+  - url: '{{ _.base_url }}/auth/register'
+    name: 1 - Cadastrar usuario
+    meta:
+      id: req_esgregister000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cria o usuario de avaliacao (perfil ADMIN). Se o e-mail ja existir, siga para o Login.
+      sortKey: -10
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "nome": "Professor Avaliador",
+          "email": "professor.avaliacao@esg.com",
+          "senha": "Avaliacao2026",
+          "role": "ADMIN"
+        }
+    headers:
+    - name: Content-Type
+      value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: '{{ _.base_url }}/auth/login'
+    name: 2 - Login
+    meta:
+      id: req_esglogin00000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Copie o valor de token da resposta e cole em Auth > Bearer Token das requisicoes 3 a 7.
+      sortKey: -9
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "email": "professor.avaliacao@esg.com",
+          "senha": "Avaliacao2026"
+        }
+    headers:
+    - name: Content-Type
+      value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+- name: 2 - Reducao de carbono
+  meta:
+    id: fld_esgreducao00000000000000000000001
+    created: 1791250000000
+    modified: 1791250000000
+    sortKey: -1
+    description: ''
+  children:
+  - url: '{{ _.base_url }}/api/reducao-carbono'
+    name: 3 - Cadastrar iniciativa
+    meta:
+      id: req_esgsalvar0000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cole em Auth > Bearer Token o token retornado pela requisicao 2 - Login.
+      sortKey: -8
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "descricao": "Instalação de painéis solares em escolas municipais",
+          "categoria": "Energia Renovável",
+          "status": "PLANEJADA",
+          "emissaoBaseTco2E": 3200.00,
+          "metaReducaoTco2E": 1800.00
+        }
+    headers:
+    - name: Content-Type
+      value: application/json
+    authentication:
+      type: bearer
+      token: ''
+      prefix: Bearer
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: '{{ _.base_url }}/api/reducao-carbono'
+    name: 4 - Listar iniciativas
+    meta:
+      id: req_esglistar0000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cole em Auth > Bearer Token o token retornado pela requisicao 2 - Login.
+      sortKey: -7
+    method: GET
+    authentication:
+      type: bearer
+      token: ''
+      prefix: Bearer
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: '{{ _.base_url }}/api/reducao-carbono/1'
+    name: 5 - Buscar por id
+    meta:
+      id: req_esgbuscar0000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cole em Auth > Bearer Token o token retornado pela requisicao 2 - Login. Troque o 1 da URL pelo reducaoCarbonoId retornado em 4 - Listar iniciativas.
+      sortKey: -6
+    method: GET
+    authentication:
+      type: bearer
+      token: ''
+      prefix: Bearer
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: '{{ _.base_url }}/api/reducao-carbono'
+    name: 6 - Editar iniciativa
+    meta:
+      id: req_esgeditar0000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cole em Auth > Bearer Token o token retornado pela requisicao 2 - Login. Troque o reducaoCarbonoId do corpo pelo id retornado em 4 - Listar iniciativas.
+      sortKey: -5
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "reducaoCarbonoId": 1,
+          "descricao": "Instalação de painéis solares em escolas municipais - fase 2",
+          "categoria": "Energia Renovável",
+          "status": "EM_ANDAMENTO",
+          "emissaoBaseTco2E": 3200.00,
+          "metaReducaoTco2E": 2100.00
+        }
+    headers:
+    - name: Content-Type
+      value: application/json
+    authentication:
+      type: bearer
+      token: ''
+      prefix: Bearer
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: '{{ _.base_url }}/api/reducao-carbono/1'
+    name: 7 - Excluir iniciativa
+    meta:
+      id: req_esgexcluir000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      description: Cole em Auth > Bearer Token o token retornado pela requisicao 2 - Login. Troque o 1 da URL pelo reducaoCarbonoId retornado em 4 - Listar iniciativas.
+      sortKey: -4
+    method: DELETE
+    authentication:
+      type: bearer
+      token: ''
+      prefix: Bearer
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_esgbase000000000000000000000001
+    created: 1791250000000
+    modified: 1791250000000
+    isPrivate: false
+  data:
+    base_url: https://esg-api-staging-rm565720-bda4e8emeefkdkf7.brazilsouth-01.azurewebsites.net
+  subEnvironments:
+  - name: 1 - Staging
+    meta:
+      id: env_esgstaging0000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      sortKey: 1
+    data:
+      base_url: https://esg-api-staging-rm565720-bda4e8emeefkdkf7.brazilsouth-01.azurewebsites.net
+  - name: 2 - Producao
+    meta:
+      id: env_esgprod000000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      sortKey: 2
+    data:
+      base_url: https://esg-api-prod-rm565720-g0excufye4cpedc6.brazilsouth-01.azurewebsites.net
+  - name: 3 - Local (Docker Compose)
+    meta:
+      id: env_esglocal00000000000000000000001
+      created: 1791250000000
+      modified: 1791250000000
+      isPrivate: false
+      sortKey: 3
+    data:
+      base_url: http://127.0.0.1:8080
